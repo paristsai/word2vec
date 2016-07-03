@@ -46,6 +46,8 @@ p = Pool(5)
 results = p.map(the_fucntion, inputs)
 ```
 # 專案成果
+
+1. 先載入 gemsim 套件與剛剛訓練好的 model
 ```python
 import gensim
 # print result
@@ -56,12 +58,44 @@ def ps(result):
 # load fresh model
   model = gensim.models.Word2Vec.load("articles_rname.model")
 ```
+接下來就可以開始玩啦！我很愛吃水餃，但是昨天才剛吃過，有沒有什麼類似的料理可以推薦給我呢？
 ```python
->>> result = model.most_similar(u"水餃".split(" "),topn=5)
+>>> result = model.most_similar(u"水餃",topn=5)
 >>> ps(result)
 叉燒包 0.732798755169
 蔥油餅 0.717539072037
 三鮮 0.706256866455
+餃子 0.703786492348
+包子 0.694874405861
 ```
+當我們想要知道泰式之於瓦城，能夠類比成義式的什麼餐廳呢？ 瓦城（餐廳）- 泰式（風格）=  ?（餐廳） + 義式（風格）
+```python
+>>> result = model.most_similar_cosmul(positive=u"義式 瓦城".split(" "), negative=[u"泰式"],topn=5)
+>>> ps(result)
+廚子市場 0.989358007908
+義大利餐廳 0.988689661026
+NINI 0.969453334808
+帕莎 0.96776086092
+蒂娜 0.954010128975
+```
+在這裡我們發現了一個問題，NINI 是哪一家餐廳？原來是 Le NINI 樂尼尼義式餐廳，帕莎和蒂娜應該要合起來叫做帕蒂娜莎，看來是之前處理餐廳名稱的時候疏忽了。目前會先用 mapping 的方式找回原本的餐廳名稱。
+接下來我們要進入重頭戲，情境搜尋了
+```python
+>>> result = model.most_similar_in_list(u"夏天 海灘".split(" "), topn=3)
+>>> ps(result)
+涼爽 0.796955823898
+炎熱 0.747159838676
+消暑 0.720858633518
+```
+這個結果不是我們想要的，因此我們必須要為餐廳的名稱建立一個 list，從這些 list 的詞向量與我們的情境詞向量進行相似度的計算。
+```python
+>>> print(rname_list[:5])
+[u'Follow', u'Bellini', u'TABLE', u'Taverna', u'90']
+>>> print(mapping(rname_list[:5]))
+[u'Follow Lady 法蕾蒂', u'Bellini Pasta Pasta', u'TABLE JOE 喬桌子廚房', u'Taverna De  Medici 梅帝騎小酒館', u'90 a la sante 酒食歐風朝']
+result = model.most_similar_in_list(u"夏天 海灘".split(" "), topn=30, restrict_vocab=rname_list)
+```
+
+
 # 特別感謝
 python 有很多好用的套件，像是中文斷詞有 jieba，word2vec 有 gensim，用起來上手很快，而且還有熱心的大大們不吝分享與教學
