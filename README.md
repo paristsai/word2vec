@@ -1,4 +1,4 @@
-# word2vec
+# Word2Vec
 
 有一對情侶正為晚餐不知道要吃什麼而煩惱...
 - 男：寶貝，晚餐想吃什麼？
@@ -153,15 +153,16 @@ model = gensim.models.Word2Vec.load("articles_rname.model")
 ```
 這些結果很有趣，有空再來分析～
 
-# 心得與未來展望
-- 有些餐廳的食記數量不夠多，會影響到訓練結果
+# 心得 & 未來展望
+- 餐廳的食記數量不夠多，或是數量不平均，會影響到訓練結果
 - 改成收集評論可能會更精準
 - 將多為向量壓到二維，可以拿來做 clustering
 - 文字處理不容易但是很重要
-- 多國語言搜尋也能透過 Word2Vec 來改善成效
+- 多國語言搜尋也能配合 Word2Vec
 
 # 特別感謝 & 參考資源
 Python 有很多好用的套件，像是中文斷詞有 jieba，word2vec 有 gensim，用起來上手很快，而且還有熱心的大大們不吝分享與教學。
+- 謝謝 Google 大神
 - 謝謝 Mark -> 提供的 API
 - 謝謝 亮亮 [中文搜尋經驗分享](https://blog.liang2.tw/2015Talk-Chinese-Search/) -> 非常精彩，讓我對 NLP 產生了莫大的興趣 
 - 謝謝 Shaform [用中文資料測試 word2vec](http://city.shaform.com/blog/2014/11/04/word2vec.html) -> 簡潔易懂 
