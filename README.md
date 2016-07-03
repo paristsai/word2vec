@@ -46,6 +46,22 @@ p = Pool(5)
 results = p.map(the_fucntion, inputs)
 ```
 # 專案成果
-
+```python
+import gensim
+# print result
+def ps(result):
+  if result:
+  for e in result:
+    print e[0], e[1]
+# load fresh model
+  model = gensim.models.Word2Vec.load("articles_rname.model")
+```
+```python
+>>> result = model.most_similar(u"水餃".split(" "),topn=5)
+>>> ps(result)
+叉燒包 0.732798755169
+蔥油餅 0.717539072037
+三鮮 0.706256866455
+```
 # 特別感謝
 python 有很多好用的套件，像是中文斷詞有 jieba，word2vec 有 gensim，用起來上手很快，而且還有熱心的大大們不吝分享與教學
