@@ -171,3 +171,7 @@ Python 有很多好用的套件，像是中文斷詞有 jieba，word2vec 有 gen
 - 謝謝 jimgoo 在 gensim 實作的 [most_similar_in_list](https://github.com/RaRe-Technologies/gensim/pull/481) -> 節省很多時間
 - 謝謝 mrvege [處理標點符號的方法](https://gist.github.com/mrvege/2ba6a437f0a4c4812f21)
 - 謝謝 Hokusai [[討論] 有男生收過騷擾/約砲信嗎](https://www.ptt.cc/bbs/sex/M.1467099969.A.1D1.html) -> 激起了我對 NLP 的無限想像 
+
+---
+有什麼建議或是需要其他資訊都歡迎與我聯繫！
+> **Paris Tsai**  [paristsaiswing@gmail.com](mailto:paristsaiswing@gmail.com)
